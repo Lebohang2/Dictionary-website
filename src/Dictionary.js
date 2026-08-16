@@ -3,18 +3,17 @@ import "./Dictionary.css";
 import axios from "axios";
 import Results from "./Results";
 
-export default function Dictionary() {
-    let[keyword, setKeyword] = useState("");
+export default function Dictionary(props) {
+    let[keyword, setKeyword] = useState(props.standardKeyword);
     let [results, setResults] = useState(null);
+    let [loaded, setLoaded] = useState(false);
 
     function handleResponse(response) {
    setResults(response.data);
+   console.log(response.data);
 }
-    
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        alert(`You searched for ${keyword}`);
+ 
+   function handleSearch() {
 
        let word = keyword;
   let apiKey = "410o3ft86210d5f3d73f24a4d34d2bab";
@@ -25,20 +24,44 @@ export default function Dictionary() {
         axios.get(apiUrl).then(handleResponse);
     }
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        handleSearch();
+    }
+
     function handleKeywordChange(event) {
         setKeyword(event.target.value);
         console.log(event.target.value);
     }
 
-    return (
+    function load() {
+        setLoaded(true);
+        handleSearch();
+    }
+
+    if(loaded) {
+ return (
         <div className="Dictionary">
-            <form onSubmit={handleSubmit}>
+            <section>
+                <h1>What word do you want to look up?</h1>
+                 <form onSubmit={handleSubmit}>
                 <input
-                    type="text"
-                    onChange={handleKeywordChange}
+                  type="text"
+                  id="search"
+                  name="search"
+                  onChange={handleKeywordChange} defaultValue={props.standardKeyword}
                 />
             </form>
+            <div className="hint">
+                suggested words: sunset, juice, running, jungle...
+            </div>
+            </section>
+           
             <Results results={results} />
         </div>
     );
+}else {
+    load();
+    return "Loading...";
+}
 }

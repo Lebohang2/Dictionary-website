@@ -1,0 +1,30 @@
+.Phonetic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.Phonetic p {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+.Phonetic button {
+  border: 1px solid #ddd;
+  background: white;
+  color: pink;
+  font-weight: bold;
+  font-size:13px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.Phonetic button:hover {
+  background:purple;
+  color: white;
+}
