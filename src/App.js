@@ -11,7 +11,8 @@ export default function App() {
         <main>
           <Dictionary standardKeyword="Flower" />
           </main>
-          <footer className="text-center">
+          <br/>
+          <footer className="App-footer">
             <small>
               Coded by <a href="https://github.com/Lebohang2/Dictionary-website" target="_blank" rel="noopener noreferrer">Lebohang Kubheka</a>
             </small>
